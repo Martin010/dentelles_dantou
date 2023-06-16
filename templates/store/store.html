@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <!-- TITLE -->
+    <section class="section-pagetop bg">
+        <div class="container">
+            <h2 class="title-page">Notre magasin</h2>
+        </div>
+    </section>
+
+    <!-- MAIN -->
+    <section class="section-content padding-y">
+        <div class="container">
+            <div class="row">
+
+                <!-- FILTERS -->
+                <aside class="col-md-3">
+                    <div class="card">
+
+                        <!-- CATEGORIES -->
+                        <article class="filter-group">
+                            <header class="card-header">
+                                <a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" class="">
+                                    <i class="icon-control fa fa-chevron-down"></i>
+                                    <h6 class="title">Catégories</h6>
+                                </a>
+                            </header>
+                            <div class="filter-content collapse show" id="collapse_1" style="">
+                                <div class="card-body">
+
+                                    <ul class="list-menu">
+                                        <li><a href="#">People </a></li>
+                                        <li><a href="#">Watches </a></li>
+                                        <li><a href="#">Cinema </a></li>
+                                        <li><a href="#">Clothes </a></li>
+                                        <li><a href="#">Home items </a></li>
+                                        <li><a href="#">Animals</a></li>
+                                        <li><a href="#">People </a></li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- SIZES -->
+                        <article class="filter-group">
+                            <header class="card-header">
+                                <a href="#" data-toggle="collapse" data-target="#collapse_4" aria-expanded="true" class="">
+                                    <i class="icon-control fa fa-chevron-down"></i>
+                                    <h6 class="title">Tailles</h6>
+                                </a>
+                            </header>
+                            <div class="filter-content collapse show" id="collapse_4" style="">
+                                <div class="card-body">
+                                    <label class="checkbox-btn">
+                                        <input type="checkbox">
+                                        <span class="btn btn-light"> XS </span>
+                                    </label>
+
+                                    <label class="checkbox-btn">
+                                        <input type="checkbox">
+                                        <span class="btn btn-light"> SM </span>
+                                    </label>
+
+                                    <label class="checkbox-btn">
+                                        <input type="checkbox">
+                                        <span class="btn btn-light"> LG </span>
+                                    </label>
+
+                                    <label class="checkbox-btn">
+                                        <input type="checkbox">
+                                        <span class="btn btn-light"> XXL </span>
+                                    </label>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- PRICES RANGE -->
+                        <article class="filter-group">
+                            <header class="card-header">
+                                <a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="">
+                                    <i class="icon-control fa fa-chevron-down"></i>
+                                    <h6 class="title">Prix</h6>
+                                </a>
+                            </header>
+                            <div class="filter-content collapse show" id="collapse_3" style="">
+                                <div class="card-body">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label>Min</label>
+                                            <!-- <input class="form-control" placeholder="$0" type="number"> -->
+                                            <select class="mr-2 form-control">
+                                                <option value="0">0€</option>
+                                                <option value="50">50€</option>
+                                                <option value="100">100€</option>
+                                                <option value="150">150€</option>
+                                                <option value="200">200€</option>
+                                                <option value="500">500€</option>
+                                                <option value="1000">1000€</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group text-right col-md-6">
+                                            <label>Max</label>
+                                            <select class="mr-2 form-control">
+                                                <option value="50">50€</option>
+                                                <option value="100">100e</option>
+                                                <option value="150">150€</option>
+                                                <option value="200">200€</option>
+                                                <option value="500">500€</option>
+                                                <option value="1000">1000€</option>
+                                                <option value="2000">2000€+</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-block btn-primary">Appliquer</button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </aside>
+
+                <!-- PRODUCTS -->
+                <main class="col-md-9">
+
+                    <!-- QUANTITY -->
+                    <header class="border-bottom mb-4 pb-3">
+                        <div class="form-inline">
+                            <span class="mr-md-auto"><b>{{ product_count }}</b> objets trouvés</span>
+                        </div>
+                    </header>
+
+                    <!-- LIST OF PRODUCTS -->
+                    <div class="row">
+                        {% for product in products %}
+                            <div class="col-md-4">
+                                <figure class="card card-product-grid">
+                                    <div class="img-wrap">
+                                        <img src="{{ product.images.url }}">
+                                    </div>
+                                    <figcaption class="info-wrap">
+                                        <div class="fix-height">
+                                            <a href="./product-detail.html" class="title">{{ product.product_name }}</a>
+                                            <div class="price-wrap mt-2">
+                                                <span class="price">{{ product.price }} €</span>
+                                                <!-- <del class="price-old">$1980</del> -->
+                                            </div>
+                                        </div>
+                                        <a href="#" class="btn btn-block btn-primary">Ajouter au panier</a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- PAGINATION -->
+                    <nav class="mt-4" aria-label="Page navigation sample">
+                        <ul class="pagination">
+                            <li class="page-item disabled"><a class="page-link" href="#">Précédent</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Suivant</a></li>
+                        </ul>
+                    </nav>
+                </main>
+            </div>
+        </div>
+    </section>
+{% endblock %}
