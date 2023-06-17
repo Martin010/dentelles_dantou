@@ -66,7 +66,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'category.context_processors.menu_links', # allow to use the return of menu_links in all the templates
+                'category.context_processors.menu_links', # Allow to use the return of menu_links in all the templates
+                'carts.context_processors.counter', # Allow to use the return of counter in all the templates
             ],
         },
     },
