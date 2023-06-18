@@ -16,6 +16,7 @@ class Product(models.Model):
     created_date    = models.DateTimeField(auto_now_add=True)
     modified_date   = models.DateTimeField(auto_now=True)
 
+    # Return the product's url with the category slug and its own slug
     def get_url(self):
         return reverse('product_detail', args=[self.category.slug, self.slug])
 

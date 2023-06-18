@@ -10,7 +10,7 @@ class AccountAdmin(UserAdmin):
     readonly_fields = ('last_login', 'date_joined')
     ordering = ('-date_joined',)
 
-    # Obligatory with custom user model (and protect passwords)
+    # Obligatory with custom user model (and protect passwords of manual modification in the Django administrator)
     filter_horizontal = ()
     list_filter = ()
     fieldsets = ()

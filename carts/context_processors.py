@@ -3,6 +3,10 @@ from carts.views import _cart_id
 
 
 def counter(request):
+    """
+        Update digit of the card with the number of products in the card
+    """
+
     cart_count = 0
     if 'admin' in request.path:
         return {}

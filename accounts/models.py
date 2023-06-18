@@ -3,7 +3,20 @@ from django.db import models
 
 
 class MyAccountManager(BaseUserManager):
+    """
+        Custom account manager (administrator, superuser, user, etc.)
+    """
+
     def create_user(self, first_name, last_name, username, email, password=None):
+        """
+            Custom create user function.
+
+                - first_name  : str
+                - last_name   : str
+                - username    : str
+                - email       : str
+                - password    : str (default=None)
+        """
         if not email:
             raise ValueError('User must have an email address')
 
@@ -22,6 +35,16 @@ class MyAccountManager(BaseUserManager):
         return user
 
     def create_superuser(self, first_name, last_name, username, email, password):
+        """
+            Custom create superuser function.
+
+                - first_name  : str
+                - last_name   : str
+                - username    : str
+                - email       : str
+                - password    : str
+        """
+
         user = self.create_user(
             email=self.normalize_email(email),
             username=username,
@@ -53,6 +76,7 @@ class Account(AbstractBaseUser):
     is_active       = models.BooleanField(default=False)
     is_superadmin   = models.BooleanField(default=False)
 
+    # email is the element used for the authentication
     USERNAME_FIELD  = 'email'
     REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
 

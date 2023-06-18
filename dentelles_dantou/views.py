@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from store.models import Product
 
+
 def home(request):
+    # Select all the products available
     products = Product.objects.all().filter(is_available=True)
 
     context = {
