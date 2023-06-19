@@ -41,7 +41,14 @@
                                                     <img src="{{ cart_item.product.images.url }}" class="img-sm"></div>
                                                 <figcaption class="info">
                                                     <a href="{{ cart_item.product.get_url }}" class="title text-dark">{{ cart_item.product.product_name }}</a>
-                                                    <p class="text-muted small">Couleur: Bleu <br> Taille: XL</p>
+                                                    <p class="text-muted small">
+                                                        {% if cart_item.variations.all %}
+                                                            {% for variation in cart_item.variations.all %}
+                                                                {{ variation.get_variation_category_display | capfirst }} : {{ variation.variation_value | capfirst }}
+                                                                <br>
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                    </p>
                                                 </figcaption>
                                             </figure>
                                         </td>
@@ -51,15 +58,26 @@
                                             <div class="col">
                                                 <div class="input-group input-spinner">
                                                     <div class="input-group-prepend">
-                                                        <a href="{% url 'remove_cart' cart_item.product.id %}" class="btn btn-light" type="button" id="button-plus">
+                                                        <a href="{% url 'remove_cart' cart_item.product.id cart_item.id %}" class="btn btn-light" type="button" id="button-minus">
                                                             <i class="fa fa-minus"></i>
                                                         </a>
                                                     </div>
                                                     <input type="text" class="form-control" value="{{ cart_item.quantity }}">
                                                     <div class="input-group-append">
-                                                        <a href="{% url 'add_cart' cart_item.product.id %}" class="btn btn-light" type="button" id="button-minus">
-                                                            <i class="fa fa-plus"></i>
-                                                        </a>
+                                                        <form action="{% url 'add_cart' cart_item.product.id %}" method="POST">
+                                                            {% csrf_token %}
+                                                            {% for variation in cart_item.variations.all %}
+                                                                <!--
+                                                                <input type="hidden ... > permet d'inclure des données qui ne peuvent être vues ou modifiées lorsque le formulaire est envoyé.
+                                                                Cela permet par exemple d'envoyer l'identifiant d'une commande ou un jeton de sécurité unique. (ici les différentes variations)
+                                                                Les champs de ce type sont invisibles sur la page.
+                                                                -->
+                                                                <input type="hidden" name="{{ variation.variation_category | lower }}" value="{{ variation.variation_value | capfirst }}">
+                                                            {% endfor %}
+                                                            <button class="btn btn-light" type="submit" id="button-plus">
+                                                                <i class="fa fa-plus"></i>
+                                                            </button>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
@@ -75,7 +93,7 @@
 
                                         <!-- REMOVE BUTTON -->
                                         <td class="text-right">
-                                            <a href="{% url 'remove_cart_item' cart_item.product.id %}" class="btn btn-danger"> Supprimer</a>
+                                            <a href="{% url 'remove_cart_item' cart_item.product.id cart_item.id %}" onclick="return confirm('Souhaitez-vous supprimer cet article ?')" class="btn btn-danger"> Supprimer</a>
                                         </td>
                                     </tr>
                                 {% endfor %}
