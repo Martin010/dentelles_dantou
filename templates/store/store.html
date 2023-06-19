@@ -134,31 +134,31 @@
 
                     <!-- LIST OF PRODUCTS -->
                     <div class="row">
-                    {% if products %}
-                        {% for product in products %}
-                            <div class="col-md-4">
-                                <figure class="card card-product-grid">
-                                    <div class="img-wrap">
-                                        <a href="{{ product.get_url }}"><img src="{{ product.images.url }}"></a>
-                                    </div>
-                                    <figcaption class="info-wrap">
-                                        <div class="fix-height">
-                                            <a href="{{ product.get_url }}" class="title">{{ product.product_name }}</a>
-                                            <div class="price-wrap mt-2">
-                                                <span class="price">{{ product.price }} €</span>
-                                                <!-- <del class="price-old">$1980</del> -->
-                                            </div>
+                        {% if products %}
+                            {% for product in products %}
+                                <div class="col-md-4">
+                                    <figure class="card card-product-grid">
+                                        <div class="img-wrap">
+                                            <a href="{{ product.get_url }}"><img src="{{ product.images.url }}"></a>
                                         </div>
-                                        <a href="{{ product.get_url }}" class="btn btn-block btn-primary">Voir les détails</a>
-                                    </figcaption>
-                                </figure>
+                                        <figcaption class="info-wrap">
+                                            <div class="fix-height">
+                                                <a href="{{ product.get_url }}" class="title">{{ product.product_name }}</a>
+                                                <div class="price-wrap mt-2">
+                                                    <span class="price">{{ product.price }} €</span>
+                                                    <!-- <del class="price-old">$1980</del> -->
+                                                </div>
+                                            </div>
+                                            <a href="{{ product.get_url }}" class="btn btn-block btn-primary">Voir les détails</a>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <div>
+                                <h2>Aucun résultat.</h2>
                             </div>
-                        {% endfor %}
-                    {% else %}
-                        <div>
-                            <h2>Aucun résultat.</h2>
-                        </div>
-                    {% endif %}
+                        {% endif %}
                     </div>
 
                     <!-- PAGINATION -->
