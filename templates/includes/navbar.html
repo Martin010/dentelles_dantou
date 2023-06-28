@@ -89,13 +89,24 @@
                     <div class="d-flex justify-content-end mb-3 mb-lg-0">
 
                         <!-- LOGIN AND REGISTER -->
-                        <div class="widget-header">
-                            <small class="title text-muted">Bienvenue invité!</small>
-                            <div>
-                                <a href="{% url 'login' %}">Connexion</a> <span class="dark-transp"> | </span>
-                                <a href="{% url 'register' %}">Inscription</a>
+                        {% if user.id is None %}
+                            <div class="widget-header">
+                                <small class="title text-muted">Bienvenue !</small>
+                                <div>
+                                    <a href="{% url 'login' %}">Connexion</a> <span class="dark-transp"> | </span>
+                                    <a href="{% url 'register' %}">Inscription</a>
+                                </div>
                             </div>
-                        </div>
+                        {% else %}
+                            <div class="widget-header ">
+                                <!-- user is available on all the templates by default -->
+                                <small class="title text-muted">Bienvenue {{ user.first_name }} !</small>
+                                <div>
+                                    <a href="#">Tableau de bord</a> <span class="dark-transp"> | </span>
+                                    <a href="{% url 'logout' %}">Déconnexion</a>
+                                </div>
+                            </div>
+                        {% endif %}
 
                         <!-- CART -->
                         <a href="{% url 'cart' %}" class="widget-header pl-3 ml-3">

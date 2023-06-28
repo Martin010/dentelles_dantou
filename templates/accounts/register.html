@@ -5,7 +5,11 @@
     <section class="section-content padding-y">
         <div class="card mx-auto" style="max-width:520px; margin-top:40px;">
             <article class="card-body">
-                <header class="mb-4"><h4 class="card-title">Sign up</h4></header>
+
+                <!-- Alert message after registration -->
+                {% include 'includes/alerts.html' %}
+
+                <header class="mb-4"><h4 class="card-title">Inscription</h4></header>
                 <form action="{% url 'register' %}" method="POST">
                     {% csrf_token %}
 
@@ -47,10 +51,14 @@
                         <button type="submit" class="btn btn-primary btn-block"> Register</button>
                     </div>
 
+                    <!-- Display errors if email already exits or if the posswords are not the same -->
+                    {{ form.email.errors }}
+                    {{  form.non_field_errors }}
+
                 </form>
             </article>
         </div>
-        <p class="text-center mt-4">Vous avez déjà un compte ? <a href="">Connexion</a></p>
+        <p class="text-center mt-4">Vous avez déjà un compte ? <a href="{% url 'login' %}">Connexion</a></p>
         <br><br>
     </section>
 

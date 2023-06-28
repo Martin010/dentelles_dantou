@@ -10,7 +10,6 @@ class MyAccountManager(BaseUserManager):
     def create_user(self, first_name, last_name, username, email, password=None):
         """
             Custom create user function.
-
                 - first_name  : str
                 - last_name   : str
                 - username    : str
@@ -44,7 +43,6 @@ class MyAccountManager(BaseUserManager):
                 - email       : str
                 - password    : str
         """
-
         user = self.create_user(
             email=self.normalize_email(email),
             username=username,
@@ -80,7 +78,7 @@ class Account(AbstractBaseUser):
     USERNAME_FIELD  = 'email'
     REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
 
-    object = MyAccountManager()
+    objects = MyAccountManager()
 
     def __str__(self):
         return self.email
