@@ -25,7 +25,7 @@ class RegistrationForm(forms.ModelForm):
         # Check if the fields password are the same
         if password != confirm_password:
             raise forms.ValidationError(
-                "Les mots de passes ne sont pas identiques !"
+                "Les mots de passes ne sont pas identiques."
             )
 
     def __init__(self, *args, **kwargs):

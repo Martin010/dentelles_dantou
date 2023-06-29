@@ -1,0 +1,12 @@
+{% autoescape off %} <!-- No escape (<, >, ', ", & are no converted), it's a protection against cross site scripting-->
+
+    Bonjour {{ user.first_name }},
+
+    Vous venez de vous inscrire sur le site "Les Dentelles de Dantou".
+    Veuillez cliquer sur le lien ci-dessous pour valider votre inscription :
+
+    http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+
+    Si vous n'avez réalisé d'inscription, veuillez ignorer cet email.
+
+{% endautoescape %}
