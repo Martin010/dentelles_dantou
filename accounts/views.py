@@ -1,5 +1,6 @@
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 
 from django.shortcuts import render, redirect
 from accounts.forms import RegistrationForm
@@ -63,7 +64,7 @@ def register(request):
             # )
 
             # send command and email in the request to display the email verification message in the login page
-            return redirect('/accounts/login/?command=verification&email='+email)
+            return redirect('/accounts/login/?command=verification&email=' + email)
 
     else:
         form = RegistrationForm()
@@ -119,6 +120,42 @@ def activate(request, uidb64, token):
         return redirect('register')
 
 
-@login_required(login_url='login')  # If not login, redirect to login page (can access to the dashboard only if the user if login)
+@login_required(login_url='login')  # If not login, redirect to login page (can access to the dashboard only if the user is login)
 def dashboard(request):
     return render(request, 'accounts/dashboard.html')
+
+
+def forgot_password(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        if Account.objects.filter(email=email).exists():
+            user = Account.objects.get(email__exact=email)  # The exact lookup is used to get records with a specified value. The exact lookup is case-sensitive.
+
+            # Reset password email
+            current_site = get_current_site(request)
+            mail_subject = 'Réinitialisation de votre mot de passe'
+            message = render_to_string('accounts/reset_password_email.html', {
+                'user': user,
+                'domain': current_site,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),  # Encode the user id for safety (hidden)
+                'token': default_token_generator.make_token(user)  # Create a token for this particular user
+            })
+            to_email = email
+            send_email = EmailMessage(mail_subject, message, to=[to_email])
+            send_email.send()
+
+            messages.success(
+                request,
+                f'Nous vous avons envoyé un lien de réinitialisation de mot de passe sur votre adresse email : {email}'
+            )
+
+            return redirect('login')
+        else:
+            messages.error(request, 'Le compte n\'existe pas.')
+            return redirect('forgotPassword')
+
+    return render(request, 'accounts/forgot_password.html')
+
+
+def reset_password_validate(request):
+    return HttpResponse('ok')
