@@ -102,7 +102,7 @@
                                 <!-- user is available on all the templates by default -->
                                 <small class="title text-muted">Bienvenue {{ user.first_name }} !</small>
                                 <div>
-                                    <a href="#">Tableau de bord</a> <span class="dark-transp"> | </span>
+                                    <a href="{% url 'dashboard' %}">Tableau de bord</a> <span class="dark-transp"> | </span>
                                     <a href="{% url 'logout' %}">Déconnexion</a>
                                 </div>
                             </div>

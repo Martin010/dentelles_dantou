@@ -5,7 +5,6 @@ from django.shortcuts import render, redirect
 from accounts.forms import RegistrationForm
 from accounts.models import Account
 
-
 # Verification email
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.tokens import default_token_generator
@@ -45,25 +44,31 @@ def register(request):
 
             # User Activation
             current_site = get_current_site(request)
-            mail_subject = 'Action de votre compte'
+            mail_subject = 'Activation de votre compte "Les Dentelles de Dantou"'
             message = render_to_string('accounts/account_verification_email.html', {
                 'user': user,
                 'domain': current_site,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)), # Encode the user id for safety (hidden)
-                'token': default_token_generator.make_token(user) # Create a token for this particular user
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),  # Encode the user id for safety (hidden)
+                'token': default_token_generator.make_token(user)  # Create a token for this particular user
             })
             to_email = email
             send_email = EmailMessage(mail_subject, message, to=[to_email])
             send_email.send()
 
-            messages.success(request, 'Inscription validée !')
+            # messages.success(
+            #     request,
+            #     'Merci pour votre inscription. '
+            #     'Nous vous avons envoyé un lien de validation de compte sur votre adresse email. '
+            #     'Veuillez valider votre compte afin de poursuivre votre navigation.'
+            # )
 
-            return redirect('register')
+            # send command and email in the request to display the email verification message in the login page
+            return redirect('/accounts/login/?command=verification&email='+email)
 
     else:
         form = RegistrationForm()
 
-    context ={
+    context = {
         'form': form,
     }
     return render(request, 'accounts/register.html', context)
@@ -78,8 +83,8 @@ def login(request):
 
         if user is not None:
             auth.login(request, user)
-            # messages.success(request, 'Vous êtes maintenant connecté !')
-            return redirect('home')
+            messages.success(request, 'Vous êtes maintenant connecté !')
+            return redirect('dashboard')
         else:
             messages.error(request, 'l\'email et/ou le mot de passe est incorrect.')
             return redirect('login')
@@ -95,3 +100,25 @@ def logout(request):
 
     return redirect('login')
 
+
+def activate(request, uidb64, token):
+    try:
+        uid = urlsafe_base64_decode(uidb64).decode()  # Decode uidb64 and restore it
+        user = Account._default_manager.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, Account.DoesNotExist):
+        user = None
+
+    # If user and token exist
+    if user is not None and default_token_generator.check_token(user, token):
+        user.is_active = True
+        user.save()
+        messages.success(request, 'Félicitation ! Votre compte est activé et votre inscription est terminée !')
+        return redirect('login')
+    else:
+        messages.error(request, 'Le lien d\'activation n\'est plus valide')
+        return redirect('register')
+
+
+@login_required(login_url='login')  # If not login, redirect to login page (can access to the dashboard only if the user if login)
+def dashboard(request):
+    return render(request, 'accounts/dashboard.html')
