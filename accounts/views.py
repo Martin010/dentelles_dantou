@@ -93,8 +93,7 @@ def login(request):
     return render(request, 'accounts/login.html')
 
 
-# Check if you are login before trying to logout
-@login_required(login_url='login')
+@login_required(login_url='login') # Check if you are login before trying to logout
 def logout(request):
     auth.logout(request)
     messages.success(request, 'Vous êtes déconnectez.')
@@ -103,6 +102,7 @@ def logout(request):
 
 
 def activate(request, uidb64, token):
+    # Check if the link is available
     try:
         uid = urlsafe_base64_decode(uidb64).decode()  # Decode uidb64 and restore it
         user = Account._default_manager.get(pk=uid)
@@ -152,10 +152,45 @@ def forgot_password(request):
             return redirect('login')
         else:
             messages.error(request, 'Le compte n\'existe pas.')
-            return redirect('forgotPassword')
+            return redirect('forgot_password')
 
     return render(request, 'accounts/forgot_password.html')
 
 
-def reset_password_validate(request):
-    return HttpResponse('ok')
+def reset_password_validate(request, uidb64, token):
+    # Check if the link is available
+    try:
+        uid = urlsafe_base64_decode(uidb64).decode()  # Decode uidb64 and restore it
+        user = Account._default_manager.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, Account.DoesNotExist):
+        user = None
+
+    # If user and token exist
+    if user is not None and default_token_generator.check_token(user, token):
+        request.session['uid'] = uid
+        messages.success(request, 'Veuillez réinitialiser votre mot de passe')
+        return redirect('reset_password')
+    else:
+        messages.error(request, 'Le lien n\'est plus valide')
+        return redirect('login')
+
+
+def reset_password(request):
+    if request.method == "POST":
+        password = request.POST['password']
+        confirm_password = request.POST['confirm_password']
+
+        # If the two passwords are the same reset the user password
+        if password == confirm_password:
+            uid = request.session.get('uid')
+            user = Account.objects.get(pk=uid)
+            user.set_password(password)     # set_password is a django function to change a specific user password (automatically hash the password)
+            user.save()
+            messages.success(request, 'Le mot de passe a été réinitialisé avec succès !')
+            return redirect('login')
+        else:
+            messages.error(request, 'Les mots de passe ne sont pas identiques !')
+            return redirect('reset_password')
+
+    else:
+        return render(request, 'accounts/reset_password.html')
