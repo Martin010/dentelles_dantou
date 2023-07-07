@@ -87,7 +87,7 @@ def login(request):
         user = auth.authenticate(email=email, password=password)
 
         if user is not None:
-            # Check if the user start to add items to the cart without be logging
+            # Check if the user adds items to the cart before being logged in, the cart stays the same
             try:
                 # If a cart id exists, link the user and the cart items
                 cart = Cart.objects.get(cart_id=_cart_id(request))
