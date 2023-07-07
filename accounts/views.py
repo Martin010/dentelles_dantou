@@ -1,5 +1,6 @@
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
 
 from django.shortcuts import render, redirect
@@ -15,6 +16,9 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
+
+from carts.models import Cart, CartItem
+from carts.views import _cart_id
 
 
 def register(request):
@@ -83,6 +87,19 @@ def login(request):
         user = auth.authenticate(email=email, password=password)
 
         if user is not None:
+            # Check if the user start to add items to the cart without be logging
+            try:
+                # If a cart id exists, link the user and the cart items
+                cart = Cart.objects.get(cart_id=_cart_id(request))
+                is_cart_item_exists = CartItem.objects.filter(cart=cart).exists()
+                if is_cart_item_exists:
+                    cart_item = CartItem.objects.filter(cart=cart)
+
+                    for item in cart_item:
+                        item.user = user
+                        item.save()
+            except ObjectDoesNotExist:
+                pass
             auth.login(request, user)
             messages.success(request, 'Vous êtes maintenant connecté !')
             return redirect('dashboard')
