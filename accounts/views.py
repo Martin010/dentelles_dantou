@@ -20,6 +20,8 @@ from django.core.mail import EmailMessage
 from carts.models import Cart, CartItem
 from carts.views import _cart_id
 
+import requests
+
 
 def register(request):
     if request.method == 'POST':
@@ -97,9 +99,11 @@ def login(request):
                     # Getting the product variations by cart id
                     cart_item = CartItem.objects.filter(cart=cart)
                     product_variation = []
+                    product_id_list = []
                     for item in cart_item:
                         variation = item.variations.all()
-                        product_variation.append(list(variation))   # list() because existing_variation is a query_set
+                        product_variation.append(list(variation))  # list() because existing_variation is a query_set
+                        product_id_list.append(item.id)
 
                     # Get the cart items from the user to access to his product variations
                     cart_item = CartItem.objects.filter(user=user)
@@ -111,27 +115,39 @@ def login(request):
                         items_id_list.append(item.id)
 
                     # Check if the product of the cart is in the product list of the user
-                    for product in product_variation:
+                    for i, product in enumerate(product_variation):
+                        product_id = product_id_list[i]
+                        current_item = CartItem.objects.get(id=product_id)
+
                         if product in existing_variations_list:
                             # If the product is in the user list : get the object and increment the quantity
                             index = existing_variations_list.index(product)
                             item_id = items_id_list[index]
                             item = CartItem.objects.get(id=item_id)
-                            item.quantity += 1
+                            item.quantity += current_item.quantity
                             item.user = user
                             item.save()
                         else:
                             # If the product is not in the user list : add the product to the cart
-                            cart_item = CartItem.objects.filter(cart=cart)
-                            for item in cart_item:
-                                item.user = user
-                                item.save()
+                            current_item.user = user
+                            current_item.save()
             except:
                 pass
 
             auth.login(request, user)
             messages.success(request, 'Vous êtes maintenant connecté !')
-            return redirect('dashboard')
+            url = request.META.get('HTTP_REFERER')  # Get the previous url
+            try:
+                # Clean the url
+                query = requests.utils.urlparse(url).query  # next=/cart/checkout
+                params = dict(x.split('=') for x in query.split('&'))   # {'next': '/cart/checkout'}
+
+                # If you try to login through a redirection
+                if 'next' in params:
+                    next_page = params['next']
+                    return redirect(next_page)
+            except:
+                return redirect('dashboard')
         else:
             messages.error(request, 'l\'email et/ou le mot de passe est incorrect.')
             return redirect('login')
@@ -139,7 +155,7 @@ def login(request):
     return render(request, 'accounts/login.html')
 
 
-@login_required(login_url='login') # Check if you are login before trying to logout
+@login_required(login_url='login')  # Check if you are login before trying to logout
 def logout(request):
     auth.logout(request)
     messages.success(request, 'Vous êtes déconnectez.')
@@ -230,7 +246,7 @@ def reset_password(request):
         if password == confirm_password:
             uid = request.session.get('uid')
             user = Account.objects.get(pk=uid)
-            user.set_password(password)     # set_password is a django function to change a specific user password (automatically hash the password)
+            user.set_password(password)  # set_password is a django function to change a specific user password (automatically hash the password)
             user.save()
             messages.success(request, 'Le mot de passe a été réinitialisé avec succès !')
             return redirect('login')
