@@ -87,19 +87,48 @@ def login(request):
         user = auth.authenticate(email=email, password=password)
 
         if user is not None:
-            # Check if the user adds items to the cart before being logged in, the cart stays the same
+            # Check if the user adds items to the cart before being logged in
             try:
                 # If a cart id exists, link the user and the cart items
                 cart = Cart.objects.get(cart_id=_cart_id(request))
                 is_cart_item_exists = CartItem.objects.filter(cart=cart).exists()
-                if is_cart_item_exists:
-                    cart_item = CartItem.objects.filter(cart=cart)
 
+                if is_cart_item_exists:
+                    # Getting the product variations by cart id
+                    cart_item = CartItem.objects.filter(cart=cart)
+                    product_variation = []
                     for item in cart_item:
-                        item.user = user
-                        item.save()
-            except ObjectDoesNotExist:
+                        variation = item.variations.all()
+                        product_variation.append(list(variation))   # list() because existing_variation is a query_set
+
+                    # Get the cart items from the user to access to his product variations
+                    cart_item = CartItem.objects.filter(user=user)
+                    existing_variations_list = []
+                    items_id_list = []
+                    for item in cart_item:
+                        existing_variation = item.variations.all()
+                        existing_variations_list.append(list(existing_variation))  # list() because existing_variation is a query_set
+                        items_id_list.append(item.id)
+
+                    # Check if the product of the cart is in the product list of the user
+                    for product in product_variation:
+                        if product in existing_variations_list:
+                            # If the product is in the user list : get the object and increment the quantity
+                            index = existing_variations_list.index(product)
+                            item_id = items_id_list[index]
+                            item = CartItem.objects.get(id=item_id)
+                            item.quantity += 1
+                            item.user = user
+                            item.save()
+                        else:
+                            # If the product is not in the user list : add the product to the cart
+                            cart_item = CartItem.objects.filter(cart=cart)
+                            for item in cart_item:
+                                item.user = user
+                                item.save()
+            except:
                 pass
+
             auth.login(request, user)
             messages.success(request, 'Vous êtes maintenant connecté !')
             return redirect('dashboard')
