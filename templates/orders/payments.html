@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <section class="section-content padding-y bg">
+        <div class="container">
+            <div class="row">
+
+                <!-- CART -->
+                <aside class="col-lg-8">
+
+                    <!-- BILLING ADRESS -->
+                    <div class="card">
+                        <h5 class="card-header">Adresse de facturation</h5>
+                        <div class="card-body">
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        </div>
+                    </div>
+
+                    <!-- PAYMENT METHOD -->
+                    <div class="card">
+                        <h5 class="card-header">Méthode de paiement</h5>
+                        <div class="card-body">
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        </div>
+                    </div>
+
+                    <!-- REVIEW PRODUCTS -->
+                    <div class="card">
+                        <h5 class="card-header">Vérification des produits</h5>
+                        <div class="card-body">
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- PAYMENT -->
+                <aside class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <dl class="dlist-align">
+                                <dt>Prix Total (HT):</dt>
+                                <dd class="text-right">{{ total }} €</dd>
+                            </dl>
+                            <dl class="dlist-align">
+                                <dt>Taxe:</dt>
+                                <dd class="text-right"> {{ tax }} €</dd>
+                            </dl>
+                            <dl class="dlist-align">
+                                <dt>Prix Total:</dt>
+                                <dd class="text-right text-dark b"><strong>{{ grand_total }} €</strong></dd>
+                            </dl>
+                            <hr>
+                            <p class="text-center mb-3">
+                                <img src="{% static './images/misc/payments.png' %}" height="26">
+                            </p>
+                            <a href="{% url 'checkout' %}" class="btn btn-primary btn-block"> Paiement </a>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}
