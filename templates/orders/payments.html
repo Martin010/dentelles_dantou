@@ -5,8 +5,8 @@
 
     <section class="section-content padding-y bg">
         <div class="container">
+            <h4 class="text-left">Vérifier votre commande et effectuer le paiement</h4>
             <div class="row">
-
                 <!-- CART -->
                 <aside class="col-lg-8">
 
@@ -14,7 +14,21 @@
                     <div class="card">
                         <h5 class="card-header">Adresse de facturation</h5>
                         <div class="card-body">
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <p class="card-text mb-0"><b>{{ order.full_name }}</b></p>
+                            <p class="card-text mb-0">{{ order.full_address }}</p>
+                            <p class="card-text mb-0">{{ order.state }} {{ order.city }} {{ order.country }}</p>
+
+                            <br>
+
+                            <p class="card-text mb-0"><b>Contact</b></p>
+                            <p class="card-text mb-0">{{ order.email }}</p>
+                            <p class="card-text mb-0">{{ order.phone }}</p>
+
+                            {% if order.order_note %}
+                                <br>
+                                 <p class="card-text mb-0"><b>Instructions Supplémentaires</b></p>
+                                <p class="card-text mb-0">{{ order.order_note }}</p>
+                            {% endif %}
                         </div>
                     </div>
 
@@ -22,15 +36,64 @@
                     <div class="card">
                         <h5 class="card-header">Méthode de paiement</h5>
                         <div class="card-body">
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <p class="card-text">PayPal</p>
                         </div>
                     </div>
 
                     <!-- REVIEW PRODUCTS -->
                     <div class="card">
-                        <h5 class="card-header">Vérification des produits</h5>
+                        <h5 class="card-header">Récapitulatif des produits de votre panier</h5>
                         <div class="card-body">
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <table class="table table-borderless table-shopping-cart">
+
+                                <!-- CART TABLE HEADER-->
+                                <thead class="text-muted">
+                                <tr class="small text-uppercase">
+                                    <th scope="col">Produits</th>
+                                    <th scope="col" width="120">Quantité</th>
+                                    <th scope="col" width="120">Prix</th>
+                                </tr>
+                                </thead>
+
+                                <!-- CART TABLE BODY-->
+                                <tbody>
+                                {% for cart_item in cart_items %}
+                                    <tr>
+                                        <!-- PRODUCTS -->
+                                        <td>
+                                            <figure class="itemside align-items-center">
+                                                <div class="aside">
+                                                    <img src="{{ cart_item.product.images.url }}" class="img-sm"></div>
+                                                <figcaption class="info">
+                                                    <a href="{{ cart_item.product.get_url }}" class="title text-dark">{{ cart_item.product.product_name }}</a>
+                                                    <p class="text-muted small">
+                                                        {% if cart_item.variations.all %}
+                                                            {% for variation in cart_item.variations.all %}
+                                                                {{ variation.get_variation_category_display | capfirst }} : {{ variation.variation_value | capfirst }}
+                                                                <br>
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                    </p>
+                                                </figcaption>
+                                            </figure>
+                                        </td>
+
+                                        <!-- QUANTITIES -->
+                                        <td>
+                                            <label for="">{{ cart_item.quantity }}</label>
+                                        </td>
+
+                                        <!-- PRICES -->
+                                        <td>
+                                            <div class="price-wrap">
+                                                <var class="price">{{ cart_item.sub_total }} €</var>
+                                                <small class="text-muted">{{ cart_item.product.price }} € l'unité</small>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </aside>

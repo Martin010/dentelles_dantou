@@ -64,7 +64,18 @@ def place_order(request, total=0, quantity=0):
             data.order_number = order_number
             data.save()
 
-            return redirect('checkout')
+            # To display all the data (billing address etc.) we need order object
+            # is_ordered is False because we can have the same order_number if the user orders several times in a day.
+            # So the only order which can be ordered is the order object with the variable is_ordered to False
+            order = Order.objects.get(user=current_user, is_ordered=False, order_number=order_number)
+            context = {
+                'order': order,
+                'cart_items': cart_items,
+                'total': total,
+                'tax': tax,
+                'grand_total': grand_total,
+            }
+            return render(request, 'orders/payments.html', context)
 
     else:
         return redirect('checkout')
