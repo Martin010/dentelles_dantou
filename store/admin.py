@@ -8,6 +8,7 @@ class ProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('product_name',)}
     readonly_fields = ('created_date', 'modified_date')
 
+
 class VariationAdmin(admin.ModelAdmin):
     list_display = ('product', 'variation_category', 'variation_value', 'is_active')
     readonly_fields = ('created_date',)
