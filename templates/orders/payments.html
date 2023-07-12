@@ -26,7 +26,7 @@
 
                             {% if order.order_note %}
                                 <br>
-                                 <p class="card-text mb-0"><b>Instructions Supplémentaires</b></p>
+                                <p class="card-text mb-0"><b>Instructions Supplémentaires</b></p>
                                 <p class="card-text mb-0">{{ order.order_note }}</p>
                             {% endif %}
                         </div>
@@ -118,12 +118,53 @@
                             <p class="text-center mb-3">
                                 <img src="{% static './images/misc/payments.png' %}" height="26">
                             </p>
-                            <a href="{% url 'checkout' %}" class="btn btn-primary btn-block"> Paiement </a>
+
+                            <!-- PAYPAL -->
+                            <div id="paypal-button-container">
+                                <!-- Paypal Button Will Load -->
+                            </div>
                         </div>
                     </div>
                 </aside>
             </div>
         </div>
     </section>
+
+    <!-- PAYPAL BUTTON SCRIPT -->
+    <script>
+
+        var amount = {{ grand_total|stringformat:".2f" }};
+
+        paypal.Buttons({
+            // Style
+            style: {
+                color: 'blue',
+                shape: 'pill',
+                label: 'pay',
+                height: 40
+            },
+
+
+            // Order is created on the server and the order id is returned
+            createOrder: function (data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: amount,
+                        }
+                    }]
+                });
+            },
+
+            // Finalize the transaction on the server after payer approval
+            onApprove: function (data, actions) {
+                return actions.order.capture().then(function (details) {
+                    console.log(details);
+                    alert('Transaction completed by ' + details.payer.name.given_name + ' !');
+                });
+            }
+
+        }).render('#paypal-button-container');
+    </script>
 
 {% endblock content %}

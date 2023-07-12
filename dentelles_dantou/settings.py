@@ -144,3 +144,5 @@ EMAIL_PORT = '587'
 EMAIL_HOST_USER = 'martin.serret47@gmail.com'
 EMAIL_HOST_PASSWORD = email_password
 EMAIL_USE_TLS = True
+
+SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'
