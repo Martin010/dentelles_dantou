@@ -15,7 +15,7 @@ class OrderProductInline(admin.TabularInline):
     # Elements to display inline
     model = OrderProduct
     extra = 0   # don't add extra empty inline elements
-    readonly_fields = ('payment', 'user', 'product', 'quantity', 'product_price', 'ordered')
+    readonly_fields = ('variations', 'payment', 'user', 'product', 'quantity', 'product_price', 'ordered')
 
 
 class OrderAdmin(admin.ModelAdmin):
