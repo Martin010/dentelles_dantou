@@ -41,7 +41,7 @@ def add_cart(request, product_id):
                     variation = Variation.objects.get(product=product, variation_category__iexact=key,
                                                       variation_value__iexact=value)
                     product_variation.append(variation)
-                except ObjectDoesNotExist:
+                except:
                     pass
 
         # Combine product, variations and cart
@@ -68,8 +68,8 @@ def add_cart(request, product_id):
                 # The item exists but not the variation -> create new item
                 item = CartItem.objects.create(product=product, quantity=1, user=current_user)
                 if len(product_variation) > 0:
-                    cart_item.variations.clear()
-                    cart_item.variations.add(*product_variation)
+                    item.variations.clear()
+                    item.variations.add(*product_variation)
                 item.save()
         else:
             # The item does not exist -> create new item
