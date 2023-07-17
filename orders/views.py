@@ -9,6 +9,8 @@ from orders.models import Order, Payment, OrderProduct
 
 import json
 
+from store.models import Product
+
 
 def payments(request):
     body = json.loads(request.body)
@@ -48,15 +50,13 @@ def payments(request):
         order_product.variations.set(product_variation)
         order_product.save()
 
-        # Save object before assigning many to many field
-        # order_product.variations = item.variations
-        # order_product.save()
-
-
-
-    # Reduce the quantity of the sold products
+        # Reduce the quantity of the sold products
+        product = Product.objects.get(id=item.product_id)
+        product.stock -= item.quantity
+        product.save()
 
     # Clear cart
+    CartItem.objects.filter(user=request.user).delete()
 
     # Send order received email to customer
 
