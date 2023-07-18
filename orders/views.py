@@ -9,6 +9,9 @@ from orders.models import Order, Payment, OrderProduct
 
 import json
 
+from django.template.loader import render_to_string
+from django.core.mail import EmailMessage
+
 from store.models import Product
 
 
@@ -59,6 +62,14 @@ def payments(request):
     CartItem.objects.filter(user=request.user).delete()
 
     # Send order received email to customer
+    mail_subject = 'Merci pour votre commande !'
+    message = render_to_string('orders/order_received_email.html', {
+        'user': request.user,
+        'order': order
+    })
+    to_email = request.user.email
+    send_email = EmailMessage(mail_subject, message, to=[to_email])
+    send_email.send()
 
     # Send order number and transaction is back to sendData method via JsonResponse
 
