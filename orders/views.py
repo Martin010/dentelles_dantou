@@ -150,4 +150,32 @@ def place_order(request, total=0, quantity=0):
 
 
 def order_complete(request):
-    return render(request, 'orders/order_complete.html')
+    order_number = request.GET.get('order_number')
+    transID = request.GET.get('payment_id')
+
+    # If the order and the payment exist
+    try:
+        order = Order.objects.get(order_number=order_number, is_ordered=True)
+        ordered_products = OrderProduct.objects.filter(order_id=order.id)
+
+        subtotal = 0
+        for item in ordered_products:
+            subtotal += item.product_price * item.quantity
+
+        payment = Payment.objects.get(payment_id=transID)
+
+        context = {
+            'order': order,
+            'ordered_products': ordered_products,
+            'order_number': order.order_number,
+            'transID': payment.payment_id,
+            'payment': payment,
+            'subtotal': subtotal,
+        }
+
+        return render(request, 'orders/order_complete.html', context)
+
+    # If the user puts a wrong or a false order_number or payment_id then redirect it to the home page
+    except (Payment.DoesNotExist, Order.DoesNotExist):
+        return redirect('home')
+
