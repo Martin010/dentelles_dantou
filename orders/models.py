@@ -5,11 +5,32 @@ from store.models import Product, Variation
 
 
 class Payment(models.Model):
+    # The status of the payment in PAYPAL. Value is:
+    #   CANCELED — The Preapproval agreement was cancelled.
+    #   CREATED — The payment request was received; funds will be transferred once the payment is approved.
+    #   COMPLETED — The payment was successful.
+    #   INCOMPLETE — Some transfers succeeded and some failed for a parallel payment or, for a delayed chained payment, secondary receivers have not been paid.
+    #   ERROR — The payment failed and all attempted transfers failed or all completed transfers were successfully reversed.
+    #   REVERSALERROR — One or more transfers failed when attempting to reverse a payment.
+    #   PROCESSING — The payment is in progress.
+    #   PENDING — The payment is awaiting processing.
+
+    STATUS = (
+        ('CANCELED', 'Annulé'),
+        ('CREATED', 'Créé'),
+        ('COMPLETED', 'Complété'),
+        ('INCOMPLETE', 'Incomplet'),
+        ('ERROR', 'Erreur'),
+        ('REVERSALERROR', 'Erreur d\'annulation'),
+        ('PROCESSING', 'En cours'),
+        ('PENDING', 'En attente'),
+    )
+
     user            = models.ForeignKey(Account, on_delete=models.CASCADE)
     payment_id      = models.CharField(max_length=128)
     payment_method  = models.CharField(max_length=128)
     amount_paid     = models.CharField(max_length=128)  # Total amount paid
-    status          = models.CharField(max_length=128)
+    status          = models.CharField(max_length=16, choices=STATUS, default='CREATED')
     created_at      = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

@@ -49,7 +49,7 @@
                                             <li><strong>Commande : </strong>{{ order_number }}</li>
                                             <li><strong>Paiement : </strong>{{ transID }}</li>
                                             <li><strong>Date de commande : </strong> {{ order.created_at }}</li>
-                                            <li><strong>Statut : </strong> {{ payment.status }}</li>
+                                            <li><strong>Statut : </strong> {{ payment.get_status_display }}</li>
                                         </ul>
                                     </div>
                                 </div>
