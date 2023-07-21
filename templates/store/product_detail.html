@@ -81,10 +81,10 @@
                 <div class="col-md-9">
 
                     <header class="section-heading">
-                        <h3>Commentaires des acheteurs</h3>
+                        <h3>Espace Commentaire</h3>
                     </header>
 
-                    <form action="" method="POST">
+                    <form action="{% url 'submit_review' single_product.id %}" method="POST">
                         {% csrf_token %}
                         <h5>Écrivez votre commentaire</h5>
                         <div>
@@ -110,14 +110,24 @@
                             <br>
                             Commentaire :
                             <textarea name="review" rows="4" cols="80" class="form-control"></textarea>
+
                             <br>
-                            <input type="submit" value="Envoyer votre commentaire" class="btn btn-primary">
+
+                            {% if user.is_authenticated %}
+                                <input type="submit" value="Envoyer votre commentaire" class="btn btn-primary">
+                            {% else %}
+                                <p>Vous devez être connecté pour publier un commentaire. <span><a href="{% url 'login' %}">Connexion</a></span></p>
+                            {% endif %}
                         </div>
+
+                        {% include 'includes/alerts.html' %}
+
                     </form>
 
                     <br>
 
                     <!-- CUSTOMERS REVIEWS  -->
+                    <h5>Commentaires des acheteurs</h5>
                     <article class="box mb-3">
                         <div class="icontext w-100">
                             <img src="{% static './images/avatars/avatar1.jpg' %}" class="img-xs icon rounded-circle">

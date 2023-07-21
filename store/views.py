@@ -1,11 +1,13 @@
+from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 from carts.models import CartItem
 from carts.views import _cart_id
 from category.models import Category
-from store.models import Product
+from store.forms import ReviewForm
+from store.models import Product, ReviewRating
 
 
 def store(request, category_slug=None):
@@ -75,3 +77,29 @@ def search(request):
         'product_count': product_count,
     }
     return render(request, 'store/store.html', context)
+
+
+def submit_review(request, product_id):
+    url = request.META.get('HTTP_REFERER')  # Store the previous url
+    if request.method == "POST":
+        try:
+            reviews = ReviewRating.objects.get(user__id=request.user.id, product__id=product_id)    # The ids of the foreign keys user and product -> __id
+            form = ReviewForm(request.POST, instance=reviews)
+            form.save()
+            messages.success(request, 'Merci ! Votre commentaire a été modifié.')
+            return redirect(url)
+        except ReviewRating.DoesNotExist:
+            form = ReviewForm(request.POST)
+            if form.is_valid():
+                data = ReviewRating()
+                data.subject = form.cleaned_data['subject']
+                data.rating = form.cleaned_data['rating']
+                data.review = form.cleaned_data['review']
+                data.ip = request.META.get('REMOTE_ADDR')   # Store IP address
+                data.product_id = product_id
+                data.user_id = request.user.id
+
+                data.save()
+
+                messages.success(request, 'Merci ! Votre commentaire a été créé.')
+                return redirect(url)
