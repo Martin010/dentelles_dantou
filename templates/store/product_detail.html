@@ -114,7 +114,12 @@
                             <br>
 
                             {% if user.is_authenticated %}
-                                <input type="submit" value="Envoyer votre commentaire" class="btn btn-primary">
+                                {% if order_product %}
+                                    <input type="submit" value="Envoyer votre commentaire" class="btn btn-primary">
+                                {% else %}
+                                    <p>Vous devez acheter ce produit pour publier un commentaire.</p>
+                                {% endif %}
+
                             {% else %}
                                 <p>Vous devez être connecté pour publier un commentaire. <span><a href="{% url 'login' %}">Connexion</a></span></p>
                             {% endif %}
@@ -128,22 +133,37 @@
 
                     <!-- CUSTOMERS REVIEWS  -->
                     <h5>Commentaires des acheteurs</h5>
-                    <article class="box mb-3">
-                        <div class="icontext w-100">
-                            <img src="{% static './images/avatars/avatar1.jpg' %}" class="img-xs icon rounded-circle">
-                            <div class="text">
-                                <span class="date text-muted float-md-right">24.04.2020 </span>
-                                <h6 class="mb-1">Mike John </h6>
+                    {% for review in reviews %}
+                        <article class="box mb-3">
+                            <div class="icontext w-100">
+                                <i class="icon rounded-circle fas fa-user"></i>
+                                <div class="text">
+                                    <span class="date text-muted float-md-right">{{ review.updated_at }}</span>
+                                    <h6 class="mb-1">{{ review.user.full_name }}</h6>
+                                    <div class="rating-star">
+                                        <span>
+                                            <!--
+                                            display full star and :
+                                                if rate is x.5: add "-half-o" to "fa-star" to display a half-star
+                                                if rate is less than the value of the star: add "-o" to "fa-star" to display an empty star
+                                             -->
+                                            <i class="fa fa-star{% if review.rating == 0.5 %}-half-o{% elif review.rating < 1 %}-o {% endif %}" aria-hidden="true"></i>
+                                            <i class="fa fa-star{% if review.rating == 1.5 %}-half-o{% elif review.rating < 2 %}-o {% endif %}" aria-hidden="true"></i>
+                                            <i class="fa fa-star{% if review.rating == 2.5 %}-half-o{% elif review.rating < 3 %}-o {% endif %}" aria-hidden="true"></i>
+                                            <i class="fa fa-star{% if review.rating == 3.5 %}-half-o{% elif review.rating < 4 %}-o {% endif %}" aria-hidden="true"></i>
+                                            <i class="fa fa-star{% if review.rating == 4.5 %}-half-o{% elif review.rating < 5 %}-o {% endif %}" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mt-3">
-                            <p>
-                                Dummy comment Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                quis nostrud exercitation ullamco laboris nisi ut aliquip
-                            </p>
-                        </div>
-                    </article>
+                            <div class="mt-3">
+                                <h6>{{ review.subject }}</h6>
+                                <p>
+                                    {{ review.review }}
+                                </p>
+                            </div>
+                        </article>
+                    {% endfor %}
                 </div>
             </div>
         </div>

@@ -18,7 +18,7 @@ class VariationAdmin(admin.ModelAdmin):
 
 class ReviewRatingAdmin(admin.ModelAdmin):
     list_display = ('subject', 'user', 'product', 'rating', 'created_at', 'updated_at', 'status')
-    readonly_fields = ('product', 'user', 'subject', 'review', 'rating', 'ip', 'created_at', 'updated_at')
+    readonly_fields = ('created_at',)
     list_filter = ('product', 'updated_at', 'status')
 
 
