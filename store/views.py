@@ -55,10 +55,13 @@ def product_detail(request, category_slug, product_slug):
     except Exception as e:
         raise e
 
-    # Check if the user already ordered the product and can post a review
-    try:
-        order_product = OrderProduct.objects.filter(user=request.user, product_id=single_product.id).exists()
-    except OrderProduct.DoesNotExist:
+    if request.user.is_authenticated:
+        # Check if the user already ordered the product and can post a review
+        try:
+            order_product = OrderProduct.objects.filter(user=request.user, product_id=single_product.id).exists()
+        except OrderProduct.DoesNotExist:
+            order_product = None
+    else:
         order_product = None
 
     # Get the reviews
