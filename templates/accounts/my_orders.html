@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <section class="section-conten padding-y bg">
+
+        {% include 'includes/alerts.html' %}
+
+        <div class="container">
+            <div class="row">
+
+                <!--   SIDEBAR   -->
+                {% include 'includes/dashboard_sidebar.html' %}
+
+                <!-- CENTER PAGE -->
+                <main class="col-md-9">
+                    <article class="card">
+                        <header class="card-header">
+                            <strong class="d-inline-block mr-3">Historique des commandes</strong>
+                        </header>
+
+                        <div class="card-body">
+                            <div class="row">
+
+                                <!-- ORDER HISTORY -->
+                                <div class="col-md-12">
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">Numéro de commande</th>
+                                            <th scope="col">Nom de facturation</th>
+                                            <th scope="col">Numéro de téléphone</th>
+                                            <th scope="col">Montant</th>
+                                            <th scope="col">Date</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for order in orders %}
+                                            <tr>
+                                                <th scope="row">#{{ order.order_number }}</th>
+                                                <td>{{ order.full_name }}</td>
+                                                <td>{{ order.phone }}</td>
+                                                <td>{{ order.order_total }} €</td>
+                                                <td>{{ order.created_at }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </main>
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}
