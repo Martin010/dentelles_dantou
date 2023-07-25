@@ -1,5 +1,5 @@
 from django import forms
-from .models import Account
+from .models import Account, UserProfile
 
 
 class RegistrationForm(forms.ModelForm):
@@ -42,3 +42,29 @@ class RegistrationForm(forms.ModelForm):
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = 'form-control'
 
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = Account
+        fields = ('first_name', 'last_name', 'phone_number')
+
+    def __init__(self, *args, **kwargs):
+        """ Add attribute class="form-control" in all the fields """
+        super(UserForm, self).__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = 'form-control'
+
+
+class UserProfileForm(forms.ModelForm):
+    # Hide path of the file in the profile picture field
+    profile_picture = forms.ImageField(required=False, error_messages={'invalid': ("Uniquement des images")}, widget=forms.FileInput)
+
+    class Meta:
+        model = UserProfile
+        fields = ('profile_picture', 'address_line_1', 'address_line_2', 'country', 'state', 'city')
+
+    def __init__(self, *args, **kwargs):
+        """ Add attribute class="form-control" in all the fields"""
+        super(UserProfileForm, self).__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = 'form-control'

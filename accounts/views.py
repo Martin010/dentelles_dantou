@@ -3,9 +3,9 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
 
-from django.shortcuts import render, redirect
-from accounts.forms import RegistrationForm
-from accounts.models import Account
+from django.shortcuts import render, redirect, get_object_or_404
+from accounts.forms import RegistrationForm, UserForm, UserProfileForm
+from accounts.models import Account, UserProfile
 
 # Verification email
 from django.contrib.sites.shortcuts import get_current_site
@@ -275,3 +275,31 @@ def my_orders(request):
     }
 
     return render(request, 'accounts/my_orders.html', context)
+
+
+def edit_profile(request):
+    user_profile = get_object_or_404(UserProfile, user=request.user)
+
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=request.user)
+        profile_form = UserProfileForm(request.POST, request.FILES, instance=user_profile)
+
+        # Update the user and the profile if forms are valid
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, 'Votre profil a été mis à jour.')
+            return redirect('edit_profile')
+
+        # Display user and profile information if no form is sent
+    else:
+        user_form = UserForm(instance=request.user)
+        profile_form = UserProfileForm(instance=user_profile)
+
+    context = {
+        'user_form': user_form,
+        'profile_form': profile_form,
+        'user_profile': user_profile,
+    }
+
+    return render(request, 'accounts/edit_profile.html', context)

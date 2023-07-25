@@ -94,13 +94,13 @@ class Account(AbstractBaseUser):
 
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(Account, on_delete=models.CASCADE)
-    profile_picture = models.ImageField(upload_to='userprofile', blank=True)
-    address_line_1 = models.CharField(max_length=128, blank=True)
-    address_line_2 = models.CharField(max_length=128, blank=True)
-    country = models.CharField(max_length=64)
-    state = models.CharField(max_length=64)
-    city = models.CharField(max_length=64)
+    user                = models.OneToOneField(Account, on_delete=models.CASCADE)
+    profile_picture     = models.ImageField(upload_to='userprofile', blank=True)
+    address_line_1      = models.CharField(max_length=128, blank=True)
+    address_line_2      = models.CharField(max_length=128, blank=True)
+    country             = models.CharField(max_length=64)
+    state               = models.CharField(max_length=64)
+    city                = models.CharField(max_length=64)
 
     def __str__(self):
         return self.user.full_name()
