@@ -51,6 +51,12 @@ def register(request):
 
             user.save()
 
+            # Create User Profile
+            profile = UserProfile()
+            profile.user_id = user.id
+            profile.profile_picture = 'default/default-user.png'
+            profile.save()
+
             # User Activation
             current_site = get_current_site(request)
             mail_subject = 'Activation de votre compte "Les Dentelles de Dantou"'
@@ -267,6 +273,7 @@ def reset_password(request):
         return render(request, 'accounts/reset_password.html')
 
 
+@login_required(login_url='login')
 def my_orders(request):
     orders = Order.objects.filter(user=request.user, is_ordered=True).order_by('-created_at')
 
@@ -277,6 +284,7 @@ def my_orders(request):
     return render(request, 'accounts/my_orders.html', context)
 
 
+@login_required(login_url='login')
 def edit_profile(request):
     user_profile = get_object_or_404(UserProfile, user=request.user)
 
@@ -303,3 +311,36 @@ def edit_profile(request):
     }
 
     return render(request, 'accounts/edit_profile.html', context)
+
+
+@login_required(login_url='login')
+def change_password(request):
+    if request.method == 'POST':
+        current_password = request.POST['current_password']
+        new_password = request.POST['new_password']
+        confirm_password = request.POST['confirm_password']
+
+        user = Account.objects.get(username__exact=request.user.username)   # Check this username is exactly the same in the database
+
+        if new_password == confirm_password:
+            success = user.check_password(current_password)     # Django's method that check if the current password is available (hash)
+            if success:
+                user.set_password(new_password)     # Django inbuilt function that automatically hash the new password
+                user.save()
+
+                # If you want automatically logout the user after password change:
+                # auth.logout(request)
+
+                messages.success(request, 'Le mot de passe a été modifié avec succès.')
+                return redirect('change_password')
+
+            else:
+                messages.error(request, 'Le mot de passe actuel est incorrect.')
+                return redirect('change_password')
+
+        else:
+            messages.error(request, 'Les nouveaux mots de passe ne correspondent pas.')
+            return redirect('change_password')
+
+
+    return render(request, 'accounts/change_password.html')
