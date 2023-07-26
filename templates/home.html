@@ -24,15 +24,31 @@
             <!-- PRODUCTS -->
             <div class="row">
                 {% for product in products %}
-                <div class="col-md-3">
-                    <div class="card card-product-grid">
-                        <a href="{{ product.get_url }}" class="img-wrap"> <img src="{{ product.images.url }}"> </a>
-                        <figcaption class="info-wrap">
-                            <a href="{{ product.get_url }}" class="title">J{{ product.product_name }}</a>
-                            <div class="price mt-1">{{ product.price }} €</div> <!-- price-wrap.// -->
-                        </figcaption>
+                    <div class="col-md-3">
+                        <div class="card card-product-grid">
+                            <a href="{{ product.get_url }}" class="img-wrap"> <img src="{{ product.images.url }}"> </a>
+                            <figcaption class="info-wrap">
+                                <a href="{{ product.get_url }}" class="title">{{ product.product_name }}</a>
+                                <div class="price mt-1">{{ product.price }} €</div> <!-- price-wrap.// -->
+                                <div class="rating-star mb-3">
+                                    {% if product.count_review > 0 %}
+                                        <span>
+                                            <!--
+                                            display full star and :
+                                                if rate is x.5: add "-half-o" to "fa-star" to display a half-star
+                                                if rate is less than the value of the star: add "-o" to "fa-star" to display an empty star
+                                             -->
+                                            <i class="fa fa-star{% if product.average_review < 0.5 %}-o{% elif product.average_review >= 0.5 and product.average_review < 1 %}-half-o {% endif %}" aria-hidden="true"></i>
+                                            <i class="fa fa-star{% if product.average_review < 1.5 %}-o{% elif product.average_review >= 1.5 and product.average_review < 2 %}-half-o {% endif %}" aria-hidden="true"></i>
+                                            <i class="fa fa-star{% if product.average_review < 2.5 %}-o{% elif product.average_review >= 2.5 and product.average_review < 3 %}-half-o {% endif %}" aria-hidden="true"></i>
+                                            <i class="fa fa-star{% if product.average_review < 3.5 %}-o{% elif product.average_review >= 3.5 and product.average_review < 4 %}-half-o {% endif %}" aria-hidden="true"></i>
+                                            <i class="fa fa-star{% if product.average_review < 4.5 %}-o{% elif product.average_review >= 4.5 and product.average_review < 5 %}-half-o {% endif %}" aria-hidden="true"></i>
+                                        </span>
+                                    {% endif %}
+                                </div>
+                            </figcaption>
+                        </div>
                     </div>
-                </div>
                 {% endfor %}
             </div>
 

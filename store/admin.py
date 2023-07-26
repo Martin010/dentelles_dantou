@@ -13,7 +13,7 @@ class ProductGalleryInline(admin.TabularInline):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('product_name', 'price', 'stock', 'category', 'modified_date', 'is_available')
+    list_display = ('product_name', 'price', 'stock', 'category', 'created_date', 'modified_date', 'is_available')
     prepopulated_fields = {'slug': ('product_name',)}
     readonly_fields = ('created_date', 'modified_date')
     inlines = [ProductGalleryInline]    # Display ProductGallery in the database product object
