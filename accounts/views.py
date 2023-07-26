@@ -1,4 +1,7 @@
+import itertools
+
 from django.contrib import messages, auth
+from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
@@ -22,7 +25,7 @@ from carts.views import _cart_id
 
 import requests
 
-from orders.models import Order
+from orders.models import Order, OrderProduct
 
 
 def register(request):
@@ -195,8 +198,11 @@ def dashboard(request):
     orders = Order.objects.order_by('-created_at').filter(user_id=request.user.id, is_ordered=True)
     orders_count = orders.count()
 
+    user_profile = UserProfile.objects.get(user_id=request.user.id)
+
     context = {
-        'orders_count': orders_count
+        'orders_count': orders_count,
+        'user_profile': user_profile,
     }
 
     return render(request, 'accounts/dashboard.html', context)
@@ -327,9 +333,7 @@ def change_password(request):
             if success:
                 user.set_password(new_password)     # Django inbuilt function that automatically hash the new password
                 user.save()
-
-                # If you want automatically logout the user after password change:
-                # auth.logout(request)
+                update_session_auth_hash(request, user)     # Django function takes the current request and the updated user object from which the new session hash will be derived and updates the session hash appropriately. Logout if there is not this function
 
                 messages.success(request, 'Le mot de passe a été modifié avec succès.')
                 return redirect('change_password')
@@ -342,5 +346,21 @@ def change_password(request):
             messages.error(request, 'Les nouveaux mots de passe ne correspondent pas.')
             return redirect('change_password')
 
-
     return render(request, 'accounts/change_password.html')
+
+
+@login_required(login_url='login')
+def order_detail(request, order_id):
+    order_detail = OrderProduct.objects.filter(order__order_number=order_id)    # order__order_number refers to the order_number of the object order in the class OrderProduct (access to the foreign key)
+    order = Order.objects.get(order_number=order_id)
+
+    subtotal = 0
+    for item in order_detail:
+        subtotal += item.product_price * item.quantity
+
+    context={
+        'order_detail': order_detail,
+        'order': order,
+        'subtotal': subtotal,
+    }
+    return render(request, 'accounts/order_detail.html', context)
