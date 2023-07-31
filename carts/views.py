@@ -6,6 +6,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from carts.models import Cart, CartItem
 from store.models import Product, Variation
 
+from _decimal import Decimal
+
 
 def _cart_id(request):
     """
@@ -206,7 +208,7 @@ def cart(request, total=0, quantity=0, cart_items=None):
             total += (cart_item.product.price * cart_item.quantity)
             quantity += cart_item.quantity
 
-        tax = round(((1.5 * total) / 100), 2)
+        tax = round(((Decimal('1.50') * total) / 100), 2)
         grand_total = total + tax
 
     except ObjectDoesNotExist:
@@ -241,7 +243,7 @@ def checkout(request, total=0, quantity=0, cart_items=None):
             total += (cart_item.product.price * cart_item.quantity)
             quantity += cart_item.quantity
 
-        tax = round(((1.5 * total) / 100), 2)
+        tax = round(((Decimal('1.50') * total) / 100), 2)
         grand_total = total + tax
 
     except ObjectDoesNotExist:
