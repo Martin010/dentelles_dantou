@@ -17,8 +17,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = ['127.0.0.1', 'django-dentellesdantou-env.eba-2zbmjtr5.us-west-2.elasticbeanstalk.com/']
-
+ALLOWED_HOSTS = ['dentelles-dantou-env.eba-yuhfpjxr.eu-west-3.elasticbeanstalk.com/']
 
 # Application definition
 
