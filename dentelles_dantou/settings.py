@@ -1,3 +1,5 @@
+import os
+
 from pathlib import Path
 from django.contrib.messages import constants as messages
 
@@ -17,7 +19,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = ['lesdentellesdedantou.eu-west-3.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['lesdentellesdedantou.eu-west-3.elasticbeanstalk.com', '127.0.0.1']
 
 # Application definition
 
@@ -64,8 +66,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'category.context_processors.menu_links', # Allow to use the return of menu_links in all the templates
-                'carts.context_processors.counter', # Allow to use the return of counter in all the templates
+                'category.context_processors.menu_links',   # Allow to use the return of menu_links in all the templates
+                'carts.context_processors.counter',     # Allow to use the return of counter in all the templates
             ],
         },
     },
@@ -81,12 +83,24 @@ AUTH_USER_MODEL = 'accounts.Account'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': config('DB_ENGINE'),
-        'NAME': BASE_DIR / config('DB_NAME'),
+if 'RDS_DB_NAME' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ['RDS_DB_NAME'],
+            'USER': os.environ['RDS_USERNAME'],
+            'PASSWORD': os.environ['RDS_PASSWORD'],
+            'HOST': os.environ['RDS_HOSTNAME'],
+            'PORT': os.environ['RDS_PORT'],
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': config('DB_ENGINE'),
+            'NAME': BASE_DIR / config('DB_NAME'),
+        }
+    }
 
 
 # Password validation
@@ -132,7 +146,7 @@ STATICFILES_DIRS = [
 # Media files configuration
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR /'media'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
