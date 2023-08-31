@@ -5,10 +5,8 @@ from django.contrib.messages import constants as messages
 
 from decouple import config
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -46,7 +44,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django_session_timeout.middleware.SessionTimeoutMiddleware',   # Session time out
+    'django_session_timeout.middleware.SessionTimeoutMiddleware',  # Session time out
 ]
 
 SESSION_EXPIRE_SECONDS = 3600  # 1 hour
@@ -66,8 +64,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'category.context_processors.menu_links',   # Allow to use the return of menu_links in all the templates
-                'carts.context_processors.counter',     # Allow to use the return of counter in all the templates
+                'category.context_processors.menu_links',  # Allow to use the return of menu_links in all the templates
+                'carts.context_processors.counter',  # Allow to use the return of counter in all the templates
             ],
         },
     },
@@ -75,10 +73,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'dentelles_dantou.wsgi.application'
 
-
 # Custom User Model
 AUTH_USER_MODEL = 'accounts.Account'
-
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -97,11 +93,10 @@ if 'RDS_DB_NAME' in os.environ:
 else:
     DATABASES = {
         'default': {
-            'ENGINE': config('DB_ENGINE'),
-            'NAME': BASE_DIR / config('DB_NAME'),
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -121,7 +116,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -132,7 +126,6 @@ TIME_ZONE = config('TIME_ZONE')
 USE_I18N = config('USE_I18N', default=True, cast=bool)
 
 USE_TZ = config('USE_TZ', default=True, cast=bool)
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
