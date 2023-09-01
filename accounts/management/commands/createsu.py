@@ -5,5 +5,5 @@ from accounts.models import Account
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
-        if not Account.objects.filter(username="admin-martin").exists():
-            Account.objects.create_superuser('Martin', 'Serret', 'admin-martin', 'martin.serret47@gmail.com', 'martin10031992')
+        if not Account.objects.filter(is_superadmin=True).exists():
+            Account.objects.create_superuser('Admin First Name', 'Admin Last Name', 'Admin Username', 'admin_email@gmail.com', 'adminpassword')
