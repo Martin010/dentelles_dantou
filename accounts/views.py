@@ -198,6 +198,8 @@ def dashboard(request):
     orders = Order.objects.order_by('-created_at').filter(user_id=request.user.id, is_ordered=True)
     orders_count = orders.count()
 
+    test = request.user.id
+    print(f"Ceci est un test : {test}")
     user_profile = UserProfile.objects.get(user_id=request.user.id)
 
     context = {

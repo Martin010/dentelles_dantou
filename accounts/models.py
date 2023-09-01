@@ -56,6 +56,12 @@ class MyAccountManager(BaseUserManager):
         user.is_staff = True
         user.is_superadmin = True
         user.save(using=self._db)
+
+        profile = UserProfile()
+        profile.user_id = user.id
+        profile.profile_picture = 'default/default-user.png'
+        profile.save()
+
         return user
 
 
