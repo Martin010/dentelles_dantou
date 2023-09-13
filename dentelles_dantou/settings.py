@@ -98,6 +98,18 @@ else:
         }
     }
 
+# Only for delete and load local data in aws database
+# DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#             'NAME': 'ebdb',
+#             'USER': 'adminMartin',
+#             'PASSWORD': 'Margauxmanon24061996',
+#             'HOST': 'awseb-e-2c26psah7s-stack-awsebrdsdatabase-uyevqvvlgvtx.cfpxnbrlc5e9.eu-west-3.rds.amazonaws.com',
+#             'PORT': 5432,
+#         }
+#     }
+
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 

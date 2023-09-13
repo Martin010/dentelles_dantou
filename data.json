@@ -1,0 +1,1382 @@
+[
+  {
+    "model": "admin.logentry",
+    "pk": 37,
+    "fields": {
+      "action_time": "2023-09-01T16:29:08.600Z",
+      "user": 5,
+      "content_type": 12,
+      "object_id": "1",
+      "object_repr": "What is Lorem Ipsum?",
+      "action_flag": 3,
+      "change_message": ""
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 38,
+    "fields": {
+      "action_time": "2023-09-04T07:33:09.320Z",
+      "user": 5,
+      "content_type": 15,
+      "object_id": "9",
+      "object_repr": "CartItem object (9)",
+      "action_flag": 3,
+      "change_message": ""
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+      "name": "Can add log entry",
+      "content_type": 1,
+      "codename": "add_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+      "name": "Can change log entry",
+      "content_type": 1,
+      "codename": "change_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+      "name": "Can delete log entry",
+      "content_type": 1,
+      "codename": "delete_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+      "name": "Can view log entry",
+      "content_type": 1,
+      "codename": "view_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+      "name": "Can add permission",
+      "content_type": 2,
+      "codename": "add_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+      "name": "Can change permission",
+      "content_type": 2,
+      "codename": "change_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+      "name": "Can delete permission",
+      "content_type": 2,
+      "codename": "delete_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+      "name": "Can view permission",
+      "content_type": 2,
+      "codename": "view_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+      "name": "Can add group",
+      "content_type": 3,
+      "codename": "add_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+      "name": "Can change group",
+      "content_type": 3,
+      "codename": "change_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+      "name": "Can delete group",
+      "content_type": 3,
+      "codename": "delete_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+      "name": "Can view group",
+      "content_type": 3,
+      "codename": "view_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+      "name": "Can add content type",
+      "content_type": 4,
+      "codename": "add_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+      "name": "Can change content type",
+      "content_type": 4,
+      "codename": "change_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+      "name": "Can delete content type",
+      "content_type": 4,
+      "codename": "delete_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+      "name": "Can view content type",
+      "content_type": 4,
+      "codename": "view_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+      "name": "Can add session",
+      "content_type": 5,
+      "codename": "add_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+      "name": "Can change session",
+      "content_type": 5,
+      "codename": "change_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+      "name": "Can delete session",
+      "content_type": 5,
+      "codename": "delete_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+      "name": "Can view session",
+      "content_type": 5,
+      "codename": "view_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+      "name": "Can add login attempt",
+      "content_type": 6,
+      "codename": "add_loginattempt"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+      "name": "Can change login attempt",
+      "content_type": 6,
+      "codename": "change_loginattempt"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+      "name": "Can delete login attempt",
+      "content_type": 6,
+      "codename": "delete_loginattempt"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+      "name": "Can view login attempt",
+      "content_type": 6,
+      "codename": "view_loginattempt"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+      "name": "Can add category",
+      "content_type": 7,
+      "codename": "add_category"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+      "name": "Can change category",
+      "content_type": 7,
+      "codename": "change_category"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+      "name": "Can delete category",
+      "content_type": 7,
+      "codename": "delete_category"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+      "name": "Can view category",
+      "content_type": 7,
+      "codename": "view_category"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+      "name": "Can add account",
+      "content_type": 8,
+      "codename": "add_account"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+      "name": "Can change account",
+      "content_type": 8,
+      "codename": "change_account"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+      "name": "Can delete account",
+      "content_type": 8,
+      "codename": "delete_account"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+      "name": "Can view account",
+      "content_type": 8,
+      "codename": "view_account"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+      "name": "Can add user profile",
+      "content_type": 9,
+      "codename": "add_userprofile"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+      "name": "Can change user profile",
+      "content_type": 9,
+      "codename": "change_userprofile"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+      "name": "Can delete user profile",
+      "content_type": 9,
+      "codename": "delete_userprofile"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+      "name": "Can view user profile",
+      "content_type": 9,
+      "codename": "view_userprofile"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 37,
+    "fields": {
+      "name": "Can add product",
+      "content_type": 10,
+      "codename": "add_product"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 38,
+    "fields": {
+      "name": "Can change product",
+      "content_type": 10,
+      "codename": "change_product"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 39,
+    "fields": {
+      "name": "Can delete product",
+      "content_type": 10,
+      "codename": "delete_product"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 40,
+    "fields": {
+      "name": "Can view product",
+      "content_type": 10,
+      "codename": "view_product"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 41,
+    "fields": {
+      "name": "Can add variation",
+      "content_type": 11,
+      "codename": "add_variation"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 42,
+    "fields": {
+      "name": "Can change variation",
+      "content_type": 11,
+      "codename": "change_variation"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 43,
+    "fields": {
+      "name": "Can delete variation",
+      "content_type": 11,
+      "codename": "delete_variation"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 44,
+    "fields": {
+      "name": "Can view variation",
+      "content_type": 11,
+      "codename": "view_variation"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 45,
+    "fields": {
+      "name": "Can add review rating",
+      "content_type": 12,
+      "codename": "add_reviewrating"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 46,
+    "fields": {
+      "name": "Can change review rating",
+      "content_type": 12,
+      "codename": "change_reviewrating"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 47,
+    "fields": {
+      "name": "Can delete review rating",
+      "content_type": 12,
+      "codename": "delete_reviewrating"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 48,
+    "fields": {
+      "name": "Can view review rating",
+      "content_type": 12,
+      "codename": "view_reviewrating"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 49,
+    "fields": {
+      "name": "Can add productgallery",
+      "content_type": 13,
+      "codename": "add_productgallery"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 50,
+    "fields": {
+      "name": "Can change productgallery",
+      "content_type": 13,
+      "codename": "change_productgallery"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 51,
+    "fields": {
+      "name": "Can delete productgallery",
+      "content_type": 13,
+      "codename": "delete_productgallery"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 52,
+    "fields": {
+      "name": "Can view productgallery",
+      "content_type": 13,
+      "codename": "view_productgallery"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 53,
+    "fields": {
+      "name": "Can add cart",
+      "content_type": 14,
+      "codename": "add_cart"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 54,
+    "fields": {
+      "name": "Can change cart",
+      "content_type": 14,
+      "codename": "change_cart"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 55,
+    "fields": {
+      "name": "Can delete cart",
+      "content_type": 14,
+      "codename": "delete_cart"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 56,
+    "fields": {
+      "name": "Can view cart",
+      "content_type": 14,
+      "codename": "view_cart"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 57,
+    "fields": {
+      "name": "Can add cart item",
+      "content_type": 15,
+      "codename": "add_cartitem"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 58,
+    "fields": {
+      "name": "Can change cart item",
+      "content_type": 15,
+      "codename": "change_cartitem"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 59,
+    "fields": {
+      "name": "Can delete cart item",
+      "content_type": 15,
+      "codename": "delete_cartitem"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 60,
+    "fields": {
+      "name": "Can view cart item",
+      "content_type": 15,
+      "codename": "view_cartitem"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 61,
+    "fields": {
+      "name": "Can add order",
+      "content_type": 16,
+      "codename": "add_order"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 62,
+    "fields": {
+      "name": "Can change order",
+      "content_type": 16,
+      "codename": "change_order"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 63,
+    "fields": {
+      "name": "Can delete order",
+      "content_type": 16,
+      "codename": "delete_order"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 64,
+    "fields": {
+      "name": "Can view order",
+      "content_type": 16,
+      "codename": "view_order"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 65,
+    "fields": {
+      "name": "Can add payment",
+      "content_type": 17,
+      "codename": "add_payment"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 66,
+    "fields": {
+      "name": "Can change payment",
+      "content_type": 17,
+      "codename": "change_payment"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 67,
+    "fields": {
+      "name": "Can delete payment",
+      "content_type": 17,
+      "codename": "delete_payment"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 68,
+    "fields": {
+      "name": "Can view payment",
+      "content_type": 17,
+      "codename": "view_payment"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 69,
+    "fields": {
+      "name": "Can add order product",
+      "content_type": 18,
+      "codename": "add_orderproduct"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 70,
+    "fields": {
+      "name": "Can change order product",
+      "content_type": 18,
+      "codename": "change_orderproduct"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 71,
+    "fields": {
+      "name": "Can delete order product",
+      "content_type": 18,
+      "codename": "delete_orderproduct"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 72,
+    "fields": {
+      "name": "Can view order product",
+      "content_type": 18,
+      "codename": "view_orderproduct"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": {
+      "app_label": "admin",
+      "model": "logentry"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": {
+      "app_label": "auth",
+      "model": "permission"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": {
+      "app_label": "auth",
+      "model": "group"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": {
+      "app_label": "contenttypes",
+      "model": "contenttype"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": {
+      "app_label": "sessions",
+      "model": "session"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": {
+      "app_label": "admin_honeypot",
+      "model": "loginattempt"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": {
+      "app_label": "category",
+      "model": "category"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": {
+      "app_label": "accounts",
+      "model": "account"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": {
+      "app_label": "accounts",
+      "model": "userprofile"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 10,
+    "fields": {
+      "app_label": "store",
+      "model": "product"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 11,
+    "fields": {
+      "app_label": "store",
+      "model": "variation"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 12,
+    "fields": {
+      "app_label": "store",
+      "model": "reviewrating"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 13,
+    "fields": {
+      "app_label": "store",
+      "model": "productgallery"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 14,
+    "fields": {
+      "app_label": "carts",
+      "model": "cart"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 15,
+    "fields": {
+      "app_label": "carts",
+      "model": "cartitem"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 16,
+    "fields": {
+      "app_label": "orders",
+      "model": "order"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 17,
+    "fields": {
+      "app_label": "orders",
+      "model": "payment"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 18,
+    "fields": {
+      "app_label": "orders",
+      "model": "orderproduct"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "kllmnvsj2t75iwrb178nw6igy32bw0ku",
+    "fields": {
+      "session_data": ".eJxVjDkOwyAUBe9CHSH4ZnWZPmdALJ-YLBAZXEW5e2TJjds3M-9LXMfeS6uu1DLcKG_sw78_jsxc2clwMFpSmAQowS_E-W0sbuu4upLITCQ5bcHHJ9YdpIev90Zjq2Mtge4KPWint5bwdT3c08Hi-7LXGnJmkts4RetznlSwjEvFMTEllVAYtETBWdZSJDAiQvbgjQFtWUxIfn8BQkYH:1qd46V:CIkk6AE3YuYC35zQpHMaMD4KB20zk97dfVBr86SIdqU",
+      "expire_date": "2023-09-18T07:34:35.242Z"
+    }
+  },
+  {
+    "model": "category.category",
+    "pk": 1,
+    "fields": {
+      "category_name": "Chemise",
+      "slug": "chemise",
+      "description": "Catégorie : chemise",
+      "category_image": "photos/categories/shirts_cBGPDiy.jpg"
+    }
+  },
+  {
+    "model": "category.category",
+    "pk": 2,
+    "fields": {
+      "category_name": "Jean",
+      "slug": "jean",
+      "description": "Catégorie : jean",
+      "category_image": "photos/categories/jeans_VjXKP1Q.jpg"
+    }
+  },
+  {
+    "model": "category.category",
+    "pk": 3,
+    "fields": {
+      "category_name": "T-shirt",
+      "slug": "t-shirt",
+      "description": "Catégorie : t-shirt",
+      "category_image": "photos/categories/tshirts_cLZglSB.jpg"
+    }
+  },
+  {
+    "model": "category.category",
+    "pk": 4,
+    "fields": {
+      "category_name": "Chaussure",
+      "slug": "chaussure",
+      "description": "Catégorie : chaussure",
+      "category_image": "photos/categories/shoes_uwSv6JY.png"
+    }
+  },
+  {
+    "model": "category.category",
+    "pk": 5,
+    "fields": {
+      "category_name": "Veste",
+      "slug": "veste",
+      "description": "Catégorie : veste",
+      "category_image": "photos/categories/jackets_wX8BMsY.jpg"
+    }
+  },
+  {
+    "model": "accounts.account",
+    "pk": 4,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$p3dop8tBiim8LDjHLCaWk9$pbdfrmgRT4aJQWbsY8fPJMPjqvrqH39uEgfs/ZjuWus=",
+      "first_name": "Dwight",
+      "last_name": "Schrute",
+      "username": "allmightdestructor",
+      "email": "allmightdestructor@gmail.com",
+      "phone_number": "0683367806",
+      "date_joined": "2023-09-01T13:55:06.517Z",
+      "last_login": "2023-09-01T16:29:26.140Z",
+      "is_admin": false,
+      "is_staff": false,
+      "is_active": true,
+      "is_superadmin": false
+    }
+  },
+  {
+    "model": "accounts.account",
+    "pk": 5,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$83ra8g5ouNGhDYVeJfPhwA$PMVMNMwz3FS4HIrVQx0dENSE948TYh5kSdG/2eq1SHY=",
+      "first_name": "Martin",
+      "last_name": "Serret",
+      "username": "admin-martin",
+      "email": "martin.serret47@gmail.com",
+      "phone_number": "",
+      "date_joined": "2023-09-01T15:30:20.093Z",
+      "last_login": "2023-09-04T07:32:30.872Z",
+      "is_admin": true,
+      "is_staff": true,
+      "is_active": true,
+      "is_superadmin": true
+    }
+  },
+  {
+    "model": "accounts.userprofile",
+    "pk": 1,
+    "fields": {
+      "user": 4,
+      "profile_picture": "default/default-user.png",
+      "address_line_1": "",
+      "address_line_2": "",
+      "country": "",
+      "state": "",
+      "city": ""
+    }
+  },
+  {
+    "model": "accounts.userprofile",
+    "pk": 2,
+    "fields": {
+      "user": 5,
+      "profile_picture": "default/default-user.png",
+      "address_line_1": "",
+      "address_line_2": "",
+      "country": "",
+      "state": "",
+      "city": ""
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 1,
+    "fields": {
+      "product_name": "Jean ATX",
+      "slug": "jean-atx",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing so",
+      "price": "60.00",
+      "images": "photos/products/image1.jpg",
+      "stock": 10,
+      "is_available": true,
+      "category": 2,
+      "created_date": "2023-09-01T13:28:43.803Z",
+      "modified_date": "2023-09-01T13:48:05.708Z"
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 2,
+    "fields": {
+      "product_name": "Chemise RXN",
+      "slug": "chemise-rxn",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing so",
+      "price": "30.00",
+      "images": "photos/products/Blue-Shirt_0wWnUAS.jpg",
+      "stock": 10,
+      "is_available": true,
+      "category": 1,
+      "created_date": "2023-09-01T13:31:42.716Z",
+      "modified_date": "2023-09-01T16:20:39.288Z"
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 3,
+    "fields": {
+      "product_name": "T-shirt Great",
+      "slug": "t-shirt-great",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing so",
+      "price": "20.00",
+      "images": "photos/products/Great-Tshirt_qIyyucm.jpg",
+      "stock": 0,
+      "is_available": true,
+      "category": 3,
+      "created_date": "2023-09-01T13:33:46.320Z",
+      "modified_date": "2023-09-01T13:47:31.675Z"
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 4,
+    "fields": {
+      "product_name": "Jordan Basketball",
+      "slug": "jordan-basketball",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing so",
+      "price": "120.00",
+      "images": "photos/products/jordan-true-flight-basketball-shoes_0UV2kSt.jpg",
+      "stock": 1,
+      "is_available": true,
+      "category": 4,
+      "created_date": "2023-09-01T13:34:40.101Z",
+      "modified_date": "2023-09-01T13:34:40.101Z"
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 5,
+    "fields": {
+      "product_name": "Jean Mavi",
+      "slug": "jean-mavi",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing so",
+      "price": "50.00",
+      "images": "photos/products/Mavis-Jeans_qPPSfQK.jpg",
+      "stock": 2,
+      "is_available": true,
+      "category": 2,
+      "created_date": "2023-09-01T13:44:02.543Z",
+      "modified_date": "2023-09-01T13:47:10.433Z"
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 6,
+    "fields": {
+      "product_name": "Puma Ferrari",
+      "slug": "puma-ferrari",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing so",
+      "price": "90.00",
+      "images": "photos/products/Puma-Ferrari-Shoes_vy0Ggo4.jpg",
+      "stock": 2,
+      "is_available": true,
+      "category": 4,
+      "created_date": "2023-09-01T13:44:40.231Z",
+      "modified_date": "2023-09-01T13:44:40.231Z"
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 7,
+    "fields": {
+      "product_name": "Veste US Polo Assn",
+      "slug": "veste-us-polo-assn",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing so",
+      "price": "75.00",
+      "images": "photos/products/US-Polo-Assn_Jacket_9AmjQ7A.jpg",
+      "stock": 0,
+      "is_available": true,
+      "category": 5,
+      "created_date": "2023-09-01T13:45:35.134Z",
+      "modified_date": "2023-09-01T13:45:35.134Z"
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 8,
+    "fields": {
+      "product_name": "Chemise Wrangler",
+      "slug": "chemise-wrangler",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing so",
+      "price": "35.00",
+      "images": "photos/products/Wrangler-Shirt_SIAukzT.jpg",
+      "stock": 5,
+      "is_available": true,
+      "category": 1,
+      "created_date": "2023-09-01T13:46:42.343Z",
+      "modified_date": "2023-09-01T13:46:42.343Z"
+    }
+  },
+  {
+    "model": "store.variation",
+    "pk": 1,
+    "fields": {
+      "product": 2,
+      "variation_category": "color",
+      "variation_value": "Bleu",
+      "is_active": true,
+      "created_date": "2023-09-01T13:52:16.517Z"
+    }
+  },
+  {
+    "model": "store.variation",
+    "pk": 2,
+    "fields": {
+      "product": 2,
+      "variation_category": "color",
+      "variation_value": "Vert",
+      "is_active": true,
+      "created_date": "2023-09-01T13:52:30.932Z"
+    }
+  },
+  {
+    "model": "store.variation",
+    "pk": 3,
+    "fields": {
+      "product": 2,
+      "variation_category": "color",
+      "variation_value": "Jaune",
+      "is_active": true,
+      "created_date": "2023-09-01T13:52:39.213Z"
+    }
+  },
+  {
+    "model": "store.variation",
+    "pk": 4,
+    "fields": {
+      "product": 2,
+      "variation_category": "size",
+      "variation_value": "S",
+      "is_active": true,
+      "created_date": "2023-09-01T13:52:47.917Z"
+    }
+  },
+  {
+    "model": "store.variation",
+    "pk": 5,
+    "fields": {
+      "product": 2,
+      "variation_category": "size",
+      "variation_value": "M",
+      "is_active": true,
+      "created_date": "2023-09-01T13:53:00.358Z"
+    }
+  },
+  {
+    "model": "store.variation",
+    "pk": 6,
+    "fields": {
+      "product": 2,
+      "variation_category": "size",
+      "variation_value": "L",
+      "is_active": true,
+      "created_date": "2023-09-01T13:53:09.202Z"
+    }
+  },
+  {
+    "model": "store.variation",
+    "pk": 7,
+    "fields": {
+      "product": 2,
+      "variation_category": "size",
+      "variation_value": "XL",
+      "is_active": true,
+      "created_date": "2023-09-01T13:53:20.380Z"
+    }
+  },
+  {
+    "model": "store.reviewrating",
+    "pk": 2,
+    "fields": {
+      "product": 2,
+      "user": 4,
+      "subject": "What is Lorem Ipsum?",
+      "review": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+      "rating": 4.5,
+      "ip": "127.0.0.1",
+      "status": true,
+      "created_at": "2023-09-01T16:31:27.121Z",
+      "updated_at": "2023-09-01T16:31:27.121Z"
+    }
+  },
+  {
+    "model": "store.productgallery",
+    "pk": 1,
+    "fields": {
+      "product": 2,
+      "image": "store/products/yellow-Shirt_ZDj1vvp.png"
+    }
+  },
+  {
+    "model": "store.productgallery",
+    "pk": 2,
+    "fields": {
+      "product": 2,
+      "image": "store/products/green-Shirt_Qtgs7Kf.png"
+    }
+  },
+  {
+    "model": "store.productgallery",
+    "pk": 3,
+    "fields": {
+      "product": 1,
+      "image": "store/products/image2.jpg"
+    }
+  },
+  {
+    "model": "carts.cart",
+    "pk": 1,
+    "fields": {
+      "cart_id": "je5w0g8pzp0qs5h7vvvndqudfrecdj0a",
+      "date_added": "2023-09-04T07:31:08.798Z"
+    }
+  },
+  {
+    "model": "carts.cart",
+    "pk": 2,
+    "fields": {
+      "cart_id": "0iqzjbohly01l4h5ze5dnwztsf67h5x6",
+      "date_added": "2023-09-04T07:32:26.628Z"
+    }
+  },
+  {
+    "model": "carts.cartitem",
+    "pk": 7,
+    "fields": {
+      "user": 5,
+      "product": 2,
+      "cart": null,
+      "quantity": 1,
+      "is_active": true,
+      "variations": [
+        3,
+        5
+      ]
+    }
+  },
+  {
+    "model": "carts.cartitem",
+    "pk": 10,
+    "fields": {
+      "user": 5,
+      "product": 2,
+      "cart": 2,
+      "quantity": 1,
+      "is_active": true,
+      "variations": [
+        2,
+        5
+      ]
+    }
+  },
+  {
+    "model": "orders.payment",
+    "pk": 1,
+    "fields": {
+      "user": 4,
+      "payment_id": "03205496FG973834W",
+      "payment_method": "PayPal",
+      "amount_paid": "91.35",
+      "status": "COMPLETED",
+      "created_at": "2023-09-01T16:19:18.464Z"
+    }
+  },
+  {
+    "model": "orders.payment",
+    "pk": 2,
+    "fields": {
+      "user": 4,
+      "payment_id": "7UA8223035257600E",
+      "payment_method": "PayPal",
+      "amount_paid": "60.90",
+      "status": "COMPLETED",
+      "created_at": "2023-09-01T16:20:39.241Z"
+    }
+  },
+  {
+    "model": "orders.order",
+    "pk": 1,
+    "fields": {
+      "user": 4,
+      "payment": 1,
+      "order_number": "202309011",
+      "first_name": "Martin",
+      "last_name": "Serret",
+      "phone": "0683367806",
+      "email": "martin.serret47@gmail.com",
+      "address_line_1": "4B rue Lakanal",
+      "address_line_2": "",
+      "country": "France",
+      "state": "92330",
+      "city": "Sceaux",
+      "order_note": "",
+      "order_total": "91.35",
+      "tax": "1.35",
+      "status": "New",
+      "ip": "127.0.0.1",
+      "is_ordered": true,
+      "created_at": "2023-09-01T16:12:43.937Z",
+      "updated_at": "2023-09-01T16:19:18.475Z"
+    }
+  },
+  {
+    "model": "orders.order",
+    "pk": 2,
+    "fields": {
+      "user": 4,
+      "payment": 2,
+      "order_number": "202309012",
+      "first_name": "Martin",
+      "last_name": "Serret",
+      "phone": "0683367806",
+      "email": "martin.serret47@gmail.com",
+      "address_line_1": "4B rue Lakanal",
+      "address_line_2": "",
+      "country": "France",
+      "state": "92330",
+      "city": "Sceaux",
+      "order_note": "",
+      "order_total": "60.90",
+      "tax": "0.90",
+      "status": "New",
+      "ip": "127.0.0.1",
+      "is_ordered": true,
+      "created_at": "2023-09-01T16:20:22.176Z",
+      "updated_at": "2023-09-01T16:20:39.245Z"
+    }
+  },
+  {
+    "model": "orders.orderproduct",
+    "pk": 1,
+    "fields": {
+      "order": 1,
+      "payment": 1,
+      "user": 4,
+      "product": 2,
+      "quantity": 2,
+      "product_price": "30.00",
+      "ordered": true,
+      "created_at": "2023-09-01T16:19:18.481Z",
+      "updated_at": "2023-09-01T16:19:18.492Z",
+      "variations": [
+        1,
+        4
+      ]
+    }
+  },
+  {
+    "model": "orders.orderproduct",
+    "pk": 2,
+    "fields": {
+      "order": 1,
+      "payment": 1,
+      "user": 4,
+      "product": 2,
+      "quantity": 1,
+      "product_price": "30.00",
+      "ordered": true,
+      "created_at": "2023-09-01T16:19:18.502Z",
+      "updated_at": "2023-09-01T16:19:18.512Z",
+      "variations": [
+        2,
+        6
+      ]
+    }
+  },
+  {
+    "model": "orders.orderproduct",
+    "pk": 3,
+    "fields": {
+      "order": 2,
+      "payment": 2,
+      "user": 4,
+      "product": 2,
+      "quantity": 1,
+      "product_price": "30.00",
+      "ordered": true,
+      "created_at": "2023-09-01T16:20:39.251Z",
+      "updated_at": "2023-09-01T16:20:39.263Z",
+      "variations": [
+        3,
+        7
+      ]
+    }
+  },
+  {
+    "model": "orders.orderproduct",
+    "pk": 4,
+    "fields": {
+      "order": 2,
+      "payment": 2,
+      "user": 4,
+      "product": 2,
+      "quantity": 1,
+      "product_price": "30.00",
+      "ordered": true,
+      "created_at": "2023-09-01T16:20:39.273Z",
+      "updated_at": "2023-09-01T16:20:39.283Z",
+      "variations": [
+        1,
+        7
+      ]
+    }
+  }
+]
